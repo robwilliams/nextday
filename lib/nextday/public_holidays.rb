@@ -3,7 +3,9 @@ module Nextday
   # Bank and public holidays in England and Wales
   # Includes substitute days if holiday lands on a weekend
   # http://www.direct.gov.uk/en/Employment/Employees/Timeoffandholidays/DG_073741
-  #
+  # 
+  # Be careful when adding new holidays, please specify the date as '1' not '01'
+  # 
   BANK_AND_PUBLIC_HOLIDAYS_ENGLAND_AND_WALES = [
     Holiday.new("Spring Bank Holiday", Date.new(2011, 5, 30)),
     Holiday.new("Spring Bank Holiday", Date.new(2012, 6, 4)),
