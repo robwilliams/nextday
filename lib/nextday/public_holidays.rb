@@ -4,76 +4,57 @@ module Nextday
   # Includes substitute days if holiday lands on a weekend
   # http://www.direct.gov.uk/en/Employment/Employees/Timeoffandholidays/DG_073741
   #
-  BANK_AND_PUBLIC_HOLIDAYS_ENGLAND_AND_WALES = {
+  BANK_AND_PUBLIC_HOLIDAYS_ENGLAND_AND_WALES = [
+    Holiday.new("Spring Bank Holiday", Date.new(2011, 5, 30)),
+    Holiday.new("Spring Bank Holiday", Date.new(2012, 6, 4)),
+    Holiday.new("Spring Bank Holiday", Date.new(2013, 5, 27)),
+    Holiday.new("Spring Bank Holiday", Date.new(2014, 5, 26)),
+    Holiday.new("Spring Bank Holiday", Date.new(2015, 5, 25)),
     
-    "New Year's Day" => %w(
-      03/01/2011
-      02/01/2012
-      01/01/2013
-      01/01/2014
-      01/01/2015
-    ),
+    Holiday.new("Early May Bank Holiday", Date.new(2011, 5, 2)),
+    Holiday.new("Early May Bank Holiday", Date.new(2012, 5, 7)),
+    Holiday.new("Early May Bank Holiday", Date.new(2013, 5, 6)),
+    Holiday.new("Early May Bank Holiday", Date.new(2014, 5, 5)),
+    Holiday.new("Early May Bank Holiday", Date.new(2015, 5, 4)),
     
-    "Good Friday" => %w(
-      22/04/2011
-      06/04/2012
-      29/03/2013
-      18/04/2014
-      03/04/2015
-    ),
+    Holiday.new("Queen's Diamond Jubilee", Date.new(2012, 6, 5)),
     
-    "Easter Monday" => %w(
-      25/04/2011
-      09/04/2012
-      01/04/2013
-      21/04/2014
-      06/04/2015
-    ),
+    Holiday.new("Good Friday", Date.new(2011, 4, 22)),
+    Holiday.new("Good Friday", Date.new(2012, 4, 06)),
+    Holiday.new("Good Friday", Date.new(2013, 3, 29)),
+    Holiday.new("Good Friday", Date.new(2014, 4, 18)),
+    Holiday.new("Good Friday", Date.new(2015, 4, 3)),
     
-    "Early May Bank Holiday" => %w(
-      02/05/2011
-      07/05/2012
-      06/05/2013
-      05/05/2014
-      04/05/2015
-    ),
+    Holiday.new("Summer Bank Holiday", Date.new(2011, 8, 29)),
+    Holiday.new("Summer Bank Holiday", Date.new(2012, 8, 27)),
+    Holiday.new("Summer Bank Holiday", Date.new(2013, 8, 26)),
+    Holiday.new("Summer Bank Holiday", Date.new(2014, 8, 25)),
+    Holiday.new("Summer Bank Holiday", Date.new(2015, 8, 31)),
     
-    "Spring Bank Holiday" => %w(
-      30/05/2011
-      04/06/2012
-      27/05/2013
-      26/05/2014
-      25/05/2015
-    ),
+    Holiday.new("New Year's Day", Date.new(2011, 1, 3)),
+    Holiday.new("New Year's Day", Date.new(2012, 1, 2)),
+    Holiday.new("New Year's Day", Date.new(2013, 1, 1)),
+    Holiday.new("New Year's Day", Date.new(2014, 1, 1)),
+    Holiday.new("New Year's Day", Date.new(2015, 1, 1)),
     
-    "Queen's Diamond Jubilee" => %w(
-      05/06/2012
-    ),
+    Holiday.new("Christmas Day", Date.new(2011, 12, 26)),
+    Holiday.new("Christmas Day", Date.new(2012, 12, 25)),
+    Holiday.new("Christmas Day", Date.new(2013, 12, 25)),
+    Holiday.new("Christmas Day", Date.new(2014, 12, 25)),
+    Holiday.new("Christmas Day", Date.new(2015, 12, 25)),
     
-    "Summer Bank Holiday" => %w(
-      29/08/2011
-      27/08/2012
-      26/08/2013
-      25/08/2014
-      31/08/2015
-    ),
+    Holiday.new("Easter Monday", Date.new(2011, 4, 25)),
+    Holiday.new("Easter Monday", Date.new(2012, 4, 9)),
+    Holiday.new("Easter Monday", Date.new(2013, 4, 1)),
+    Holiday.new("Easter Monday", Date.new(2014, 4, 21)),
+    Holiday.new("Easter Monday", Date.new(2015, 4, 6)),
     
-    "Christmas Day" => %w(
-      26/12/2011
-      25/12/2012
-      25/12/2013
-      25/12/2014
-      25/12/2015
-    ),
-    
-    "Boxing Day" => %w(
-      27/12/2011
-      26/12/2012
-      26/12/2013
-      26/12/2014
-      28/12/2015
-    )
-  }
+    Holiday.new("Boxing Day", Date.new(2011, 12, 27)),
+    Holiday.new("Boxing Day", Date.new(2012, 12, 26)),
+    Holiday.new("Boxing Day", Date.new(2013, 12, 26)),
+    Holiday.new("Boxing Day", Date.new(2014, 12, 26)),
+    Holiday.new("Boxing Day", Date.new(2015, 12, 28))
+  ]
   
   PUBLIC_HOLIDAYS = BANK_AND_PUBLIC_HOLIDAYS_ENGLAND_AND_WALES
 end

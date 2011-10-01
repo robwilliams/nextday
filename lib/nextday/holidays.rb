@@ -1,15 +1,25 @@
+require 'singleton'
+
 module Nextday
   
   class Holidays
+    include Enumerable
+    include Singleton
     
-    def self.name(date)
-      
+    def initialize
+      @holidays = PUBLIC_HOLIDAYS
+    end
+    
+    def each(&block)
+      @holidays.each{|holiday| block.call(holiday)}
     end
     
     def self.dates
-      @@dates ||= Nextday::PUBLIC_HOLIDAYS.values.flatten.collect do |date_string| 
-        ::Date.strptime(date_string, "%d/%m/%Y")
-      end
+      instance.map(&:date)
+    end
+    
+    def self.find(date)
+      instance.find{ |holiday| holiday.date == date }
     end
   end
 end
