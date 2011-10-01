@@ -7,10 +7,11 @@ Gem::Specification.new do |s|
   s.version     = Nextday::VERSION
   s.authors     = ["Robert Williams"]
   s.email       = ["rob@r-williams.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
+  s.homepage    = "https://github.com/robwilliams/nextday"
+  s.summary     = %q{Finds the Next Working Day even if holidays are in the way.}
   s.description = %q{
-    
+    Finds the Next Working Day even if holidays are in the way.
+    Extends Date with a .next_working_day instance method.
   }
 
   s.rubyforge_project = "nextday"
