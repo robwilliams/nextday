@@ -1,12 +1,37 @@
 module Nextday
   
   module DateExtension
+    
+    ##
+    #
+    def despatch_day
+      if working_day?
+        if to_time < cut_off_time
+          to_date
+        else
+          next_working_day
+        end
+      else
+        next_working_day
+      end
+    end
+    
+    def delivery_day
+      despatch_day.next_working_day
+    end
+    
+    def cut_off_time
+      hour, minute = Config.cut_off_hour, Config.cut_off_minute
+      
+      Time.new(year, month, day, hour, minute)
+    end
+    
     ##
     # The next working day after the current date
     # 
     # @return [Date] Next Working Day
     def next_working_day
-      next_day = self + 1
+      next_day = to_date + 1
     
       # keep going until the next day is a working day
       while !next_day.working_day?
@@ -29,7 +54,7 @@ module Nextday
     #
     # @return [Boolean] 
     def public_holiday?
-      Holidays.dates.include?(self)
+      Holidays.dates.include?(to_date)
     end
     
     ##
@@ -45,7 +70,7 @@ module Nextday
     #
     # @return [Boolean]
     def saturday?
-      self.wday == 6
+      to_date.wday == 6
     end if RUBY_VERSION < '1.9'
     
     ##
@@ -53,7 +78,7 @@ module Nextday
     #
     # @return [Boolean]
     def sunday?
-      self.wday == 0
+      to_date.wday == 0
     end if RUBY_VERSION < '1.9'
   end
 end

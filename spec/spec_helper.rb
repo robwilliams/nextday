@@ -1,5 +1,15 @@
 require 'nextday'
 
+def weekdays
+  today = Date.today
+  
+  today += 1 while (today.wday != 1) # step forward until it's monday
+  monday = today
+  
+  # monday, tuesday, wednesday, thursday, friday
+  [monday, monday+1, monday+2, monday+3, monday+4]
+end
+
 def weekends
   saturdays + sundays
 end
