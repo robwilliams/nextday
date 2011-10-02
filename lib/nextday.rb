@@ -1,3 +1,6 @@
+require 'date'
+require 'time'
+
 require "nextday/version"
 require "nextday/config"
 
