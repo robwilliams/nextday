@@ -42,6 +42,21 @@ module Nextday
     end
 
     ##
+    # The previous working day before the current date
+    # 
+    # @return [Date] Previous Working Day
+    def previous_working_day
+      previous_day = to_date - 1
+    
+      # keep going until the next day is a working day
+      while !previous_day.working_day?
+        previous_day = previous_day - 1  
+      end
+      
+      previous_day
+    end
+
+    ##
     # Is the current date a working day?
     # 
     # @return [Boolean] 
