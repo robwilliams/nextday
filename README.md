@@ -1,5 +1,7 @@
 # Nextday
 
+[![Build Status](https://secure.travis-ci.org/robwilliams/nextday.png?branch=master)](http://travis-ci.org/robwilliams/nextday)
+
 Finds the Next Working Day even if holidays are in the way.
 
 Extends ```Date```, ```Time``` and ```DateTime``` to allow you to find the next working day
