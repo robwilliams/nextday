@@ -86,21 +86,5 @@ module Nextday
     def weekend?
       saturday? or sunday?
     end
-    
-    ##
-    # Is the current date a saturday?
-    #
-    # @return [Boolean]
-    def saturday?
-      to_date.wday == 6
-    end if RUBY_VERSION < '1.9'
-    
-    ##
-    # Is the current date a saturday?
-    #
-    # @return [Boolean]
-    def sunday?
-      to_date.wday == 0
-    end if RUBY_VERSION < '1.9'
   end
 end
