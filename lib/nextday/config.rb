@@ -1,5 +1,8 @@
 module Nextday
-  
+ 
+  ##
+  # The time a warehouse or other shop closes. Used
+  # to specify which day an item will be despatched.
   CUT_OFF_TIME = "16:00"
   
   class Config
