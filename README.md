@@ -31,6 +31,28 @@ DateTime.today.working_day?
 Time.now.working_day?
 ```
 
+### When will an item be despatched?
+```ruby
+Date.today.despatch_day
+DateTime.today.despatch_day
+Time.now.despatch_day
+```
+
+### When will an item be delivered?
+```ruby
+Date.today.delivery_day
+DateTime.today.delivery_day
+Time.now.delivery_day
+```
+
+## Configuration
+
+To set the cut off time to a different value:
+
+```ruby
+Nextday::Config.cut_off_time = "18:47"
+```
+
 ## Installation
 
 To use with bundler add nextday to your gem file.
