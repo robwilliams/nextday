@@ -45,6 +45,33 @@ DateTime.today.delivery_day
 Time.now.delivery_day
 ```
 
+## Rack Application
+
+To make caching easier you can mount the ```Nextday::JSON``` in your application so you can poll it every few minutes and have next to real time data.
+
+It will return so:
+
+```ruby
+{
+  "cut_off_time": "16:00",
+  "working_day": false,
+  "next_working_day": "2012-06-11",
+  "previous_working_day": "2012-06-08",
+  "despatch_day": "2012-06-11",
+  "delivery_day": "2012-06-12"
+}
+```
+
+### Rails
+
+```ruby
+require 'nextday/json'
+
+YourAmazing::Application.routes.draw do
+  mount Nextday::JSON.new, :at => "/nextday.json"
+end
+```
+
 ## Configuration
 
 To set the cut off time to a different value:
