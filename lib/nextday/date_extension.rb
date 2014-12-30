@@ -30,7 +30,8 @@ module Nextday
     def cut_off_time
       hour, minute = Config.cut_off_hour, Config.cut_off_minute
 
-      Time.new(year, month, day, hour, minute)
+      utc_offset = self.utc_offset  unless not self.respond_to?(:utc_offset)
+      Time.new(year, month, day, hour, minute, 0, utc_offset)
     end
  
     ##

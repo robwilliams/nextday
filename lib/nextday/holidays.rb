@@ -1,19 +1,19 @@
 require 'singleton'
 
 module Nextday
-  
+
   class Holidays
     include Enumerable
     include Singleton
-    
+
     def initialize
-      @holidays = PUBLIC_HOLIDAYS
+      @holidays = PublicHolidays.new.fetch
     end
-    
+
     def each(&block)
       @holidays.each{|holiday| block.call(holiday)}
     end
-    
+
     ##
     # Returning all the dates holidays occur
     #
@@ -21,7 +21,7 @@ module Nextday
     def self.dates
       instance.map(&:date)
     end
-    
+
     ##
     # Find the first holiday for the supplied date
     # @param [Date] format the format type, `:text` or `:html`
