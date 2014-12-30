@@ -1,7 +1,11 @@
 require 'date'
 require 'time'
+require 'json'
+require 'uri'
+require 'open-uri'
 
 require "nextday/version"
+require "nextday/exceptions"
 require "nextday/config"
 
 require "nextday/holiday"
