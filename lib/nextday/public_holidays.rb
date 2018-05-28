@@ -14,6 +14,7 @@ module Nextday
     Holiday.new("Spring Bank Holiday", Date.new(2015, 5, 25)),
     Holiday.new("Spring Bank Holiday", Date.new(2016, 5, 30)),
     Holiday.new("Spring Bank Holiday", Date.new(2017, 5, 29)),
+    Holiday.new("Spring Bank Holiday", Date.new(2018, 5, 28)),
 
     Holiday.new("Early May Bank Holiday", Date.new(2011, 5, 2)),
     Holiday.new("Early May Bank Holiday", Date.new(2012, 5, 7)),
@@ -40,6 +41,7 @@ module Nextday
     Holiday.new("Summer Bank Holiday", Date.new(2015, 8, 31)),
     Holiday.new("Summer Bank Holiday", Date.new(2016, 8, 29)),
     Holiday.new("Summer Bank Holiday", Date.new(2017, 8, 28)),
+    Holiday.new("Summer Bank Holiday", Date.new(2017, 8, 27)),
 
     Holiday.new("New Year's Day", Date.new(2011, 1, 3)),
     Holiday.new("New Year's Day", Date.new(2012, 1, 2)),
@@ -48,6 +50,7 @@ module Nextday
     Holiday.new("New Year's Day", Date.new(2015, 1, 1)),
     Holiday.new("New Year's Day", Date.new(2016, 1, 1)),
     Holiday.new("New Year's Day", Date.new(2017, 1, 2)),
+    Holiday.new("New Year's Day", Date.new(2018, 1, 1)),
 
     Holiday.new("Christmas Day", Date.new(2011, 12, 26)),
     Holiday.new("Christmas Day", Date.new(2012, 12, 25)),
@@ -56,6 +59,7 @@ module Nextday
     Holiday.new("Christmas Day", Date.new(2015, 12, 25)),
     Holiday.new("Christmas Day", Date.new(2016, 12, 27)),
     Holiday.new("Christmas Day", Date.new(2017, 12, 25)),
+    Holiday.new("Christmas Day", Date.new(2018, 12, 25)),
 
     Holiday.new("Easter Monday", Date.new(2011, 4, 25)),
     Holiday.new("Easter Monday", Date.new(2012, 4, 9)),
@@ -72,6 +76,7 @@ module Nextday
     Holiday.new("Boxing Day", Date.new(2015, 12, 28)),
     Holiday.new("Boxing Day", Date.new(2016, 12, 26)),
     Holiday.new("Boxing Day", Date.new(2017, 12, 26)),
+    Holiday.new("Boxing Day", Date.new(2018, 12, 26)),
   ]
 
   PUBLIC_HOLIDAYS = BANK_AND_PUBLIC_HOLIDAYS_ENGLAND_AND_WALES
