@@ -1,83 +1,29 @@
 module Nextday
-  ##
-  # Bank and public holidays in England and Wales
-  # Includes substitute days if holiday lands on a weekend
-  # http://www.direct.gov.uk/en/Employment/Employees/Timeoffandholidays/DG_073741
-  #
-  # Be careful when adding new holidays, please specify the date as '1' not '01'
-  #
-  BANK_AND_PUBLIC_HOLIDAYS_ENGLAND_AND_WALES = [
-    Holiday.new("Spring Bank Holiday", Date.new(2011, 5, 30)),
-    Holiday.new("Spring Bank Holiday", Date.new(2012, 6, 4)),
-    Holiday.new("Spring Bank Holiday", Date.new(2013, 5, 27)),
-    Holiday.new("Spring Bank Holiday", Date.new(2014, 5, 26)),
-    Holiday.new("Spring Bank Holiday", Date.new(2015, 5, 25)),
-    Holiday.new("Spring Bank Holiday", Date.new(2016, 5, 30)),
-    Holiday.new("Spring Bank Holiday", Date.new(2017, 5, 29)),
-    Holiday.new("Spring Bank Holiday", Date.new(2018, 5, 28)),
+  class PublicHolidays
+    attr_reader :raw_data
 
-    Holiday.new("Early May Bank Holiday", Date.new(2011, 5, 2)),
-    Holiday.new("Early May Bank Holiday", Date.new(2012, 5, 7)),
-    Holiday.new("Early May Bank Holiday", Date.new(2013, 5, 6)),
-    Holiday.new("Early May Bank Holiday", Date.new(2014, 5, 5)),
-    Holiday.new("Early May Bank Holiday", Date.new(2015, 5, 4)),
-    Holiday.new("Early May Bank Holiday", Date.new(2016, 5, 2)),
-    Holiday.new("Early May Bank Holiday", Date.new(2017, 5, 1)),
+    BASE_URL = 'https://www.gov.uk/bank-holidays.json'
+    DEFAULT_DIVISION = 'england-and-wales'
 
-    Holiday.new("Queen's Diamond Jubilee", Date.new(2012, 6, 5)),
+    def initialize
+      @raw_data = ::JSON.parse(::URI.parse(BASE_URL).read)
+    rescue OpenURI::HTTPError, JSON::ParserError
+      raise Nextday::Error, 'Unable to load any public holidays.'
+    end
 
-    Holiday.new("Good Friday", Date.new(2011, 4, 22)),
-    Holiday.new("Good Friday", Date.new(2012, 4, 6)),
-    Holiday.new("Good Friday", Date.new(2013, 3, 29)),
-    Holiday.new("Good Friday", Date.new(2014, 4, 18)),
-    Holiday.new("Good Friday", Date.new(2015, 4, 3)),
-    Holiday.new("Good Friday", Date.new(2016, 3, 25)),
-    Holiday.new("Good Friday", Date.new(2017, 4, 14)),
+    def fetch
+      @data ||= parse(DEFAULT_DIVISION)
+    end
 
-    Holiday.new("Summer Bank Holiday", Date.new(2011, 8, 29)),
-    Holiday.new("Summer Bank Holiday", Date.new(2012, 8, 27)),
-    Holiday.new("Summer Bank Holiday", Date.new(2013, 8, 26)),
-    Holiday.new("Summer Bank Holiday", Date.new(2014, 8, 25)),
-    Holiday.new("Summer Bank Holiday", Date.new(2015, 8, 31)),
-    Holiday.new("Summer Bank Holiday", Date.new(2016, 8, 29)),
-    Holiday.new("Summer Bank Holiday", Date.new(2017, 8, 28)),
-    Holiday.new("Summer Bank Holiday", Date.new(2017, 8, 27)),
+    private
+    def parse(division)
+      div = @raw_data[division]
+      raise Error, "Unable to find division #{division}" unless div
+      raise Error, "Unable to find events for division #{division}" unless div['events']
 
-    Holiday.new("New Year's Day", Date.new(2011, 1, 3)),
-    Holiday.new("New Year's Day", Date.new(2012, 1, 2)),
-    Holiday.new("New Year's Day", Date.new(2013, 1, 1)),
-    Holiday.new("New Year's Day", Date.new(2014, 1, 1)),
-    Holiday.new("New Year's Day", Date.new(2015, 1, 1)),
-    Holiday.new("New Year's Day", Date.new(2016, 1, 1)),
-    Holiday.new("New Year's Day", Date.new(2017, 1, 2)),
-    Holiday.new("New Year's Day", Date.new(2018, 1, 1)),
-
-    Holiday.new("Christmas Day", Date.new(2011, 12, 26)),
-    Holiday.new("Christmas Day", Date.new(2012, 12, 25)),
-    Holiday.new("Christmas Day", Date.new(2013, 12, 25)),
-    Holiday.new("Christmas Day", Date.new(2014, 12, 25)),
-    Holiday.new("Christmas Day", Date.new(2015, 12, 25)),
-    Holiday.new("Christmas Day", Date.new(2016, 12, 27)),
-    Holiday.new("Christmas Day", Date.new(2017, 12, 25)),
-    Holiday.new("Christmas Day", Date.new(2018, 12, 25)),
-
-    Holiday.new("Easter Monday", Date.new(2011, 4, 25)),
-    Holiday.new("Easter Monday", Date.new(2012, 4, 9)),
-    Holiday.new("Easter Monday", Date.new(2013, 4, 1)),
-    Holiday.new("Easter Monday", Date.new(2014, 4, 21)),
-    Holiday.new("Easter Monday", Date.new(2015, 4, 6)),
-    Holiday.new("Easter Monday", Date.new(2016, 3, 28)),
-    Holiday.new("Easter Monday", Date.new(2017, 4, 17)),
-
-    Holiday.new("Boxing Day", Date.new(2011, 12, 27)),
-    Holiday.new("Boxing Day", Date.new(2012, 12, 26)),
-    Holiday.new("Boxing Day", Date.new(2013, 12, 26)),
-    Holiday.new("Boxing Day", Date.new(2014, 12, 26)),
-    Holiday.new("Boxing Day", Date.new(2015, 12, 28)),
-    Holiday.new("Boxing Day", Date.new(2016, 12, 26)),
-    Holiday.new("Boxing Day", Date.new(2017, 12, 26)),
-    Holiday.new("Boxing Day", Date.new(2018, 12, 26)),
-  ]
-
-  PUBLIC_HOLIDAYS = BANK_AND_PUBLIC_HOLIDAYS_ENGLAND_AND_WALES
+      div['events'].map { |e|
+        Holiday.new(e['title'], Date.parse(e['date']))
+      }
+    end
+  end
 end
